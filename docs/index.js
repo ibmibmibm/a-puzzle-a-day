@@ -82,10 +82,18 @@
     update();
     resize();
   }
+  function on_load() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    document.getElementById('date').value = yyyy + '-' + mm + '-' + dd;
+    update_and_resize();
+  }
 
   (function() {
     window.addEventListener('resize', resize);
-    window.addEventListener('load', update_and_resize);
+    window.addEventListener('load', on_load);
     let date = document.getElementById('date');
     date.addEventListener('change', update_and_resize);
     let index = document.getElementById('index');
